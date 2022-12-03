@@ -39,12 +39,16 @@ contract Token is ERC20, Ownable {
         require(adds != address(0), "address not valid");
 
         bool inWhiteList = isInWhiteList(adds);
-        require(true == inWhiteList, "Already in WhiteList");
+        require(false == inWhiteList, "Already in WhiteList");
         whiteList.push(adds);
     }
 
     function changeAmount(uint256 amount) public onlyOwner {
         autoMintAmount = amount;
+    }
+
+    function getWhiteListLength() public view returns (uint256) {
+        return whiteList.length;
     }
 
 }
